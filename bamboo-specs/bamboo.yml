@@ -1,8 +1,8 @@
 project:
   key: PCAM
   plan:
-    - name: vl-ui-test
-    - key: UITEST
+    name: vl-ui-test
+    key: UITEST
 stages:
   jobs:
     - scripts:
