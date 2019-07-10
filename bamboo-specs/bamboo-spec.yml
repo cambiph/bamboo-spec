@@ -1,5 +1,5 @@
 project:
-  - key: WEBCOM
+  - key: PCAM
   - plan:
       - name: vl-ui-test
       - key: UITEST
