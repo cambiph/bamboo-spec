@@ -3,7 +3,7 @@ project:
   plan:
     name: vl-ui-test
     key: UITEST
-    
+
 stages:
   - jobs:
       - scripts:
@@ -13,4 +13,4 @@ stages:
           - "cp ${bamboo.gitcredentials_path} ${bamboo.build.working.directory}"
           - "docker build --build-arg VERSION=patch --build-arg REPO=${bamboo.planRepository.repositoryUrl} --no-cache ."
           - /opt/scripts/docker/stop-docker-containers.sh
-      - requirements: REMOTE_ONLY
+    requirements: REMOTE_ONLY
