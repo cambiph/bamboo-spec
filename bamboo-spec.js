@@ -32,7 +32,7 @@ const content = {
                 "cp ${bamboo.gitconfig_path} ${bamboo.build.working.directory}",
                 "cp ${bamboo.npmrc_path} ${bamboo.build.working.directory}",
                 "cp ${bamboo.gitcredentials_path} ${bamboo.build.working.directory}",
-                "docker build --build-arg VERSION=patch --build-arg REPO=${bamboo.planRepository.repositoryUrl} --build-arg http_proxy=${bamboo.http_proxy} --build-arg https_proxy=${bamboo.http_proxy} --no-cache .",
+                "docker run -e GIT_REPO=${bamboo_repository_git_repositoryUrl} -e RELEASE_VERSION=patch acd-docker.repository.milieuinfo.be/milieuinfo/wc-release:0.0.8",
                 "/opt/scripts/docker/stop-docker-containers.sh"
             ], "requirements": ["REMOTE_ONLY"] 
         }]
