@@ -29,10 +29,7 @@ const content = {
         "jobs": [{
             "scripts": [
                 "/opt/scripts/git/git-repository-information-restore.sh",
-                "cp ${bamboo.gitconfig_path} ${bamboo.build.working.directory}",
-                "cp ${bamboo.npmrc_path} ${bamboo.build.working.directory}",
-                "cp ${bamboo.gitcredentials_path} ${bamboo.build.working.directory}",
-                "docker run -e GIT_REPO=${bamboo_repository_git_repositoryUrl} -e RELEASE_VERSION=patch acd-docker.repository.milieuinfo.be/milieuinfo/wc-release:0.0.8",
+                "docker run -e GIT_REPO=${bamboo_repository_git_repositoryUrl} -e RELEASE_VERSION=${bamboo.release_version} acd-docker.repository.milieuinfo.be/milieuinfo/wc-release:1.0.0",
                 "/opt/scripts/docker/stop-docker-containers.sh"
             ], "requirements": ["REMOTE_ONLY"] 
         }]
