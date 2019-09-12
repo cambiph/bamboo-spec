@@ -1,16 +1,42 @@
-project:
-  key: PCAM
-  plan:
-    name: bamboo-spec-test
-    key: TEST
+version: 2
+plan:
+  project-key: PCAM
+  key: TEST
+  name: bamboo-spec-test
+
+plan-permissions:
+  - groups:
+     - bamboo-admin
+     - bamboo-release
+     - developer-admin
+     permissions:
+      - view
+      - edit
+      - build
+      - clone
+      - admin
+
+triggers:
+  - polling: 130
+
 stages:
-  - jobs:
-      - scripts:
+  - Build:
+      manual: false
+      jobs:
+        - Build docker
+  
+
+Build docker:  
+  key: AA
+  tasks:
+    - script:
+        interpreter: /bin/sh
+        scripts:
           - /opt/scripts/git/git-repository-information-restore.sh
           - 'cp ${bamboo.gitconfig_path} ${bamboo.build.working.directory}'
           - 'cp ${bamboo.npmrc_path} ${bamboo.build.working.directory}'
           - 'cp ${bamboo.gitcredentials_path} ${bamboo.build.working.directory}'
           - 'docker build --build-arg VERSION=patch --build-arg REPO=${bamboo.planRepository.repositoryUrl} --no-cache .'
           - /opt/scripts/docker/stop-docker-containers.sh
-        requirements:
-          - REMOTE_ONLY
+  requirements:
+    - REMOTE_ONLY
