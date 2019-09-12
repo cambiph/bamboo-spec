@@ -3,7 +3,7 @@ version: 2
 plan:
   project-key: PCAM
   key: ABC
-  name: bamboo-spec-test
+  name: bamboo-spec-test2
 
 triggers:
   - polling: 130
