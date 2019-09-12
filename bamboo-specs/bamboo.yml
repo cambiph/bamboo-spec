@@ -1,20 +1,9 @@
+---
 version: 2
 plan:
   project-key: PCAM
   key: TEST
   name: bamboo-spec-test
-
-plan-permissions:
-  - groups:
-    - bamboo-admin
-    - bamboo-release
-    - developer-admin
-    permissions:
-      - view
-      - edit
-      - build
-      - clone
-      - admin
 
 triggers:
   - polling: 130
@@ -24,7 +13,6 @@ stages:
       manual: false
       jobs:
         - Build docker
-  
 
 Build docker:  
   key: AA
@@ -41,3 +29,17 @@ Build docker:
           - /opt/scripts/docker/stop-docker-containers.sh
   requirements:
     - REMOTE_ONLY
+
+---
+version: 2
+plan-permissions:
+  - groups:
+    - bamboo-admin
+    - bamboo-release
+    - developer-admin
+    permissions:
+      - view
+      - edit
+      - build
+      - clone
+      - admin
