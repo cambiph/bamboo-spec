@@ -6,9 +6,9 @@ plan:
 
 plan-permissions:
   - groups:
-      - bamboo-admin
-      - bamboo-release
-      - developer-admin
+    - bamboo-admin
+    - bamboo-release
+    - developer-admin
     permissions:
       - view
       - edit
@@ -29,6 +29,7 @@ stages:
 Build docker:  
   key: AA
   tasks:
+    - clean
     - script:
         interpreter: /bin/sh
         scripts:
