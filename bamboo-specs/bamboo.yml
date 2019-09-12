@@ -32,6 +32,9 @@ Build docker:
 
 ---
 version: 2
+plan:
+  key: TEST
+  
 plan-permissions:
   - groups:
     - bamboo-admin
