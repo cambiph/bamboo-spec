@@ -2,7 +2,7 @@
 version: 2
 plan:
   project-key: PCAM
-  key: TEST
+  key: ABC
   name: bamboo-spec-test
 
 triggers:
@@ -33,8 +33,8 @@ Build docker:
 ---
 version: 2
 plan:
-  key: TEST
-  
+  key: ABC
+
 plan-permissions:
   - groups:
     - bamboo-admin
