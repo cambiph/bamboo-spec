@@ -19,5 +19,8 @@
   "devDependencies": {
     "fs": "0.0.1-security",
     "js-yaml": "^3.13.1"
+  },
+  "dependencies": {
+    "yaml": "^1.6.0"
   }
 }

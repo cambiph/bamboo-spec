@@ -1,44 +1,35 @@
-const yaml      = require('js-yaml')
-const fs        = require('fs');
-const package   = require('../../package.json');
-const options   = { lineWidth: 200 }
+const yaml = require('yaml');
+const fs = require('fs');
 
-let json;
+const planProjectKey = 'PCAM';
+const planKey = 'ABC';
+const planName = 'Test';
 
-function readPackageJson() {
-    json = JSON.parse(package);
+const jobKey = 'ABC';
+
+const permissionPlanKey = 'ABC';
+
+function parseTemplate(fileName) {
+    const file = fs.readFileSync(fileName, 'utf8');
+    return yaml.parseDocument(file);
 }
 
-const key       = "PCAM"
-const planName  =  json.name
-const planKey   = "TEST"
+const spec = parseTemplate('templates/spec-template.yml').contents;
+const permissions = parseTemplate('templates/permissions-template.yml').contents;
 
-console.log(json.name)
+const plan = spec.get('plan');
 
-const content = {
-    "project":
-    {
-        "key": key,
-        "plan":
-        {
-            "name": planName,
-            "key": planKey
-        }
-    },
-    "stages": [{
-        "jobs": [{
-            "scripts": [
-                "/opt/scripts/git/git-repository-information-restore.sh",
-                "docker run -e GIT_REPO=${bamboo_repository_git_repositoryUrl} -e RELEASE_VERSION=${bamboo.release_version} acd-docker.repository.milieuinfo.be/milieuinfo/wc-release:1.0.0",
-                "/opt/scripts/docker/stop-docker-containers.sh"
-            ], "requirements": ["REMOTE_ONLY"] 
-        }]
-    }]
-}
+plan.set('project-key', planProjectKey);
+plan.set('key', planKey);
+plan.set('name', planName);
 
-const yamlFile = yaml.safeDump(content, options);
+const job = spec.get('Build docker')
+job.set('key', jobKey);
 
-fs.writeFile('../../bamboo-specs/bamboo.yml', yamlFile, 'utf8', (err) => {
-    if (err) throw err;
-    console.log('File has been saved!');
-})
+permissions.set('key', permissionPlanKey);
+
+const specs = yaml.stringify(spec);
+fs.writeFileSync('bamboo-specs/bamboo.yml', specs);
+
+const permissions0 = yaml.stringify(permissions);
+fs.writeFileSync('bamboo-specs/permissions.yml', permissions0)
