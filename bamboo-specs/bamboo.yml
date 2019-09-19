@@ -27,5 +27,5 @@ Build docker:
             RELEASE_VERSION=${bamboo.release_version}
             acd-docker.repository.milieuinfo.be/milieuinfo/wc-release:1.0.0'
           - /opt/scripts/docker/stop-docker-containers.sh
-        requirements:
-          - REMOTE_ONLY
+  requirements:
+    - REMOTE_ONLY
