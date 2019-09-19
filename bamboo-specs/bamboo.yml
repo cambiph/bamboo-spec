@@ -17,7 +17,7 @@ stages:
         - Build docker
 
 Build docker:
-  key: ABC
+  key: XYZ
   tasks:
     - clean
     - script:

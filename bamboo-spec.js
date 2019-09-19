@@ -5,9 +5,9 @@ const planProjectKey = 'PCAM';
 const planKey = 'ABC';
 const planName = 'Test';
 
-const jobKey = 'ABC';
+const jobKey = 'XYZ';
 
-const permissionPlanKey = 'ABC';
+const permissionPlanKey = planKey;
 
 function parseTemplate(fileName) {
     const file = fs.readFileSync(fileName, 'utf8');
@@ -26,7 +26,7 @@ plan.set('name', planName);
 const job = spec.get('Build docker')
 job.set('key', jobKey);
 
-permissions.set('key', permissionPlanKey);
+permissions.get('plan').set('key', permissionPlanKey);
 
 const specs = yaml.stringify(spec);
 fs.writeFileSync('bamboo-specs/bamboo.yml', specs);

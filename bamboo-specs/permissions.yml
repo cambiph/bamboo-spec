@@ -1,6 +1,6 @@
 version: 2
 plan:
-  key: PCABAM
+  key: ABC
 
 plan-permissions:
   - groups:
@@ -13,4 +13,3 @@ plan-permissions:
           - build
           - clone
           - admin
-key: ABC
